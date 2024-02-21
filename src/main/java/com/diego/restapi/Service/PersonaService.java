@@ -1,5 +1,6 @@
 package com.diego.restapi.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,14 @@ public class PersonaService {
             return new PersonaDTO(persona.getId(), persona.getNombre(), persona.getApellido(), persona.getEmail(), persona.getTrabajo());
         }
         return null;
+    }
+
+    public List<PersonaDTO> buscarPorApellido(String apellido) {
+        List<Persona> personas = personaRepository.findByApellido(apellido);
+        List<PersonaDTO> personasDTO = new ArrayList<>();
+        for (Persona persona : personas) {
+            personasDTO.add(new PersonaDTO(persona.getId(), persona.getNombre(), persona.getApellido(), persona.getEmail(), persona.getTrabajo()));
+        }
+        return personasDTO;
     }
 }

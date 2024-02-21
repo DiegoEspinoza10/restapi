@@ -55,4 +55,8 @@ public class PersonaController {
         return personaService.login(persona.getUsername(), persona.getPassword());
     }
 
+    @GetMapping("/persona/apellido/{apellido}")
+    public List<PersonaDTO> buscarPorApellido(@PathVariable String apellido) {
+        return personaService.buscarPorApellido(apellido);
+    }
 }
